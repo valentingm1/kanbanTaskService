@@ -8,13 +8,14 @@ public class TaskEntradaDTO {
 
     private String title;
     private String nominalTime;
-    private Set<Task> dependencies;
+    private Set<Long> dependencyIds;
     private Set<Long> assigneeIds;
 
-    public TaskEntradaDTO(String title, String nominalTime, Set<Task> dependencies, Set<Long> assigneeIds) {
+
+    public TaskEntradaDTO(String title, String nominalTime, Set<Long> dependencyIds, Set<Long> assigneeIds) {
         this.title = title;
         this.nominalTime = nominalTime;
-        this.dependencies = dependencies;
+        this.dependencyIds = dependencyIds;
         this.assigneeIds = assigneeIds;
     }
 
@@ -37,12 +38,12 @@ public class TaskEntradaDTO {
         this.nominalTime = nominalTime;
     }
 
-    public Set<Task> getDependencies() {
-        return dependencies;
+    public Set<Long> getDependencyIds() {
+        return dependencyIds;
     }
 
-    public void setDependencies(Set<Task> dependencies) {
-        this.dependencies = dependencies;
+    public void setDependencyIds(Set<Long> dependencyIds) {
+        this.dependencyIds = dependencyIds;
     }
 
     public Set<Long> getAssigneeIds() {
