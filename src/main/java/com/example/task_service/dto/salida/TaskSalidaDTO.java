@@ -11,9 +11,10 @@ public class TaskSalidaDTO {
     private Set<Task> dependencies;
     private Set<Long> assigneeIds;
     private Long id;
+    private Long swimlaneId;
 
 
-    public TaskSalidaDTO(String title, String nominalTime, Set<Task> dependencies, Set<Long> assigneeIds, Long id) {
+    public TaskSalidaDTO(String title, String nominalTime, Set<Task> dependencies, Set<Long> assigneeIds, Long id, Long swimlaneId) {
         this.title = title;
         this.nominalTime = nominalTime;
         this.dependencies = dependencies;
@@ -62,5 +63,13 @@ public class TaskSalidaDTO {
 
     public void setId(Long id) {
         this.id = id;
+    }
+
+    public Long getSwimlaneId() {
+        return swimlaneId;
+    }
+
+    public void setSwimlaneId(Long swimlaneId) {
+        this.swimlaneId = swimlaneId;
     }
 }

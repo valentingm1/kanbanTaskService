@@ -2,6 +2,8 @@ package com.example.task_service.entity;
 
 import jakarta.persistence.Entity;
 import jakarta.persistence.*;
+import jakarta.validation.constraints.NotBlank;
+import jakarta.validation.constraints.NotNull;
 
 import java.util.HashSet;
 
@@ -15,7 +17,11 @@ public class Task {
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
 
+    @NotBlank
+    @NotNull
     private String title;
+    @NotBlank
+    @NotNull
     private String nominalTime;
 
     @ManyToMany
@@ -33,12 +39,18 @@ public class Task {
     private Set<Long> assigneeIds = new HashSet<>();
 
 
-    public Task(Long id, String title, String nominalTime, Set<Task> dependencies, Set<Long> assigneeIds) {
+    @ManyToOne
+    @JoinColumn(name = "swimlane_id", nullable = false)
+    private Swimlane swimlane;
+
+
+    public Task(Long id, String title, String nominalTime, Set<Task> dependencies, Set<Long> assigneeIds, Swimlane swimlane) {
         this.id = id;
         this.title = title;
         this.nominalTime = nominalTime;
         this.dependencies = dependencies;
         this.assigneeIds = assigneeIds;
+        this.swimlane = swimlane;
     }
 
     public Task() {
@@ -82,5 +94,13 @@ public class Task {
 
     public void setAssigneeIds(Set<Long> assigneeIds) {
         this.assigneeIds = assigneeIds;
+    }
+
+    public Swimlane getSwimlane() {
+        return swimlane;
+    }
+
+    public void setSwimlane(Swimlane swimlane) {
+        this.swimlane = swimlane;
     }
 }

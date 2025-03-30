@@ -20,7 +20,12 @@ public class SecurityConfig {
                 .cors(withDefaults()) // Habilita CORS
                 .csrf(csrf -> csrf.disable()) // Deshabilita CSRF (para APIs REST)
                 .authorizeHttpRequests(auth -> auth
-                        .requestMatchers("/task/**").permitAll() // Permitir todos los métodos en /task/
+                        .requestMatchers("/task/**").permitAll()
+                        .requestMatchers("/swimlane/**").permitAll()
+                        // Permitir todas las rutas de Swagger
+                        .requestMatchers("/swagger-ui/**").permitAll()
+                        .requestMatchers("/v3/api-docs/**").permitAll()
+                        .requestMatchers("/swagger-ui.html").permitAll()
                         .anyRequest().authenticated() // Exige autenticación para otras rutas
                 )
                 .sessionManagement(sess -> sess.sessionCreationPolicy(SessionCreationPolicy.STATELESS));
